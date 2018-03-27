@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.graduation.project.mapper.AcademyMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="AcademyResultMap" type="cn.vpclub.graduation.project.entity.Academy">
+        <result column="academyid" property="academyid" />
+        <result column="academycreated_time" property="academycreatedTime" />
+        <result column="academycreated_by" property="academycreatedBy" />
+        <result column="academyupdated_time" property="academyupdatedTime" />
+        <result column="academyupdated_by" property="academyupdatedBy" />
+        <result column="academydeleted" property="academydeleted" />
+        <result column="academyname" property="academyname" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="cn.vpclub.graduation.project.entity.Academy">
+        insert into academy
+        (academyid,
+        academycreated_time,academycreated_by,
+        academyupdated_time,academyupdated_by,
+        academydeleted,academyname)
+        value (#{academyid},#{academycreatedTime},
+        #{academycreatedBy},#{academyupdatedTime},
+        #{academyupdatedBy},#{academydeleted},#{academyname})
+    </insert>
+
+
+    <delete id="delete" parameterType="cn.vpclub.graduation.project.entity.Academy">
+        delete from academy where academyid=#{academyid}
+    </delete>
+
+    <update id="update" parameterType="cn.vpclub.graduation.project.entity.Academy">
+        update academy set academycreated_time=#{academycreatedTime},
+        academycreated_by=#{academycreatedBy},
+        academyupdated_time=#{academyupdatedTime},
+        academyupdated_by=#{academyupdatedBy},
+        academydeleted=#{academydeleted},
+        academyname=#{academyname}
+        where academyid=#{academyid}
+    </update>
+
+    <select id="query" parameterType="cn.vpclub.graduation.project.entity.Academy" resultMap="AcademyResultMap">
+        SELECT
+        * FROM academy WHERE academyid=#{academyid}
+    </select>
+
+    <select id="selectAll" parameterType="cn.vpclub.graduation.project.entity.Academy" resultMap="AcademyResultMap">
+        SELECT
+        * FROM academy
+    </select>
+
+</mapper>

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option java_package = "cn.vpclub.moses.utils.grpc.proto";
+option java_outer_classname = "TypeProto";
+
+message Integer{
+    int32 value = 1;
+}
+
+message Long{
+    int64 value = 1;
+}
+
+enum DataStatus{
+    UN_DELETED = 0;
+    DELETED = 1;
+}

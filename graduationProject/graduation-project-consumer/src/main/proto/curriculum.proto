@@ -1,0 +1,42 @@
+syntax = "proto3";
+import "type.proto";
+
+option java_package = "cn.vpclub.graduation.project.api";
+option java_outer_classname = "CurriculumProto";
+
+message CurriculumDTO{
+    //课程id,主键
+    Long curriculumid=1;
+    //创建时间
+    Long curriculumcreatedTime=2;
+    //创建人
+    string curriculumcreatedBy=3;
+    //更新时间
+    Long curriculumupdatedTime=4;
+    //更新人
+    string curriculumupdatedBy=5;
+    //删除标识（1：未删除，2：已删除）
+    Long curriculumdeleted=6;
+    //课程名称
+    string curriculumname=7;
+}
+
+message CurriculumResponse{
+    Integer returnCode=1;
+    string message=2;
+    repeated CurriculumDTO dataInfo=3;
+}
+
+service CurriculumService{
+    //添加课程
+    rpc add(CurriculumDTO) returns(CurriculumResponse){}
+    //删除课程
+    rpc delete(CurriculumDTO) returns(CurriculumResponse){}
+    //修改课程
+    rpc update(CurriculumDTO) returns(CurriculumResponse){}
+    //查询单个课程
+    rpc query(CurriculumDTO) returns(CurriculumResponse){}
+    //查询所有课程
+    rpc selectAll(CurriculumDTO) returns(CurriculumResponse){}
+
+}

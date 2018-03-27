@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.graduation.project.mapper.JurisdictionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="JurisdictionResultMap" type="cn.vpclub.graduation.project.entity.Jurisdiction">
+        <result column="jurisdictionid" property="jurisdictionid" />
+        <result column="jurisdictioncreated_time" property="jurisdictioncreatedTime" />
+        <result column="jurisdictioncreated_by" property="jurisdictioncreatedBy" />
+        <result column="jurisdictionupdated_time" property="jurisdictionupdatedTime" />
+        <result column="jurisdictionupdated_by" property="jurisdictionupdatedBy" />
+        <result column="jurisdictiondeleted" property="jurisdictiondeleted" />
+        <result column="jurisdictionname" property="jurisdictionname" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="cn.vpclub.graduation.project.entity.Jurisdiction">
+        insert into jurisdiction
+        (jurisdictionid,
+        jurisdictioncreated_time,jurisdictioncreated_by,
+        jurisdictionupdated_time,jurisdictionupdated_by,
+        jurisdictiondeleted,jurisdictionname)
+        value (#{jurisdictionid},#{jurisdictioncreatedTime},
+        #{jurisdictioncreatedBy},#{jurisdictionupdatedTime},
+        #{jurisdictionupdatedBy},#{jurisdictiondeleted},#{jurisdictionname})
+    </insert>
+
+
+    <delete id="delete" parameterType="cn.vpclub.graduation.project.entity.Jurisdiction">
+        delete from jurisdiction where jurisdictionid=#{jurisdictionid}
+    </delete>
+
+    <update id="update" parameterType="cn.vpclub.graduation.project.entity.Jurisdiction">
+        update jurisdiction set jurisdictioncreated_time=#{jurisdictioncreatedTime},
+        jurisdictioncreated_by=#{jurisdictioncreatedBy},
+        jurisdictionupdated_time=#{jurisdictionupdatedTime},
+        jurisdictionupdated_by=#{jurisdictionupdatedBy},
+        jurisdictiondeleted=#{jurisdictiondeleted},
+        jurisdictionname=#{jurisdictionname}
+        where jurisdictionid=#{jurisdictionid}
+    </update>
+
+    <select id="query" parameterType="cn.vpclub.graduation.project.entity.Jurisdiction" resultMap="JurisdictionResultMap">
+        SELECT
+        jurisdictionname FROM jurisdiction WHERE jurisdictionid=#{jurisdictionid}
+    </select>
+
+    <select id="selectAll" parameterType="cn.vpclub.graduation.project.entity.Jurisdiction" resultMap="JurisdictionResultMap">
+        SELECT
+        * FROM jurisdiction
+    </select>
+
+</mapper>

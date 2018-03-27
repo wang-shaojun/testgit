@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+option java_package = "cn.vpclub.moses.utils.grpc.proto";
+
+import public "type.proto";
+import "google/protobuf/descriptor.proto";
+
+// The greeter service definition.
+service Greeter {
+    // Sends a greeting
+    rpc SayHello ( HelloRequest) returns (  HelloReply) {}
+
+}
+
+// The request message containing the user's name.
+message NestedObject {
+    string strVal = 1;
+    int32 intVal = 2;
+    double dbVal = 3;
+}
+
+message HelloRequest {
+    string fromBase = 1;
+    string name = 2;
+    int32 age = 3;
+    double balance = 4;
+    Integer integerVal = 5;
+    Long longVal = 6;
+    NestedObject nestedObject = 7;
+}
+
+// The response message containing the greetings
+message DataInfo {
+    string name = 1;
+    string data = 2;
+}
+
+message HelloReply {
+    Long id = 1;
+    Integer returnCode = 2;
+    string message = 3;
+    DataInfo dataInfo = 4;
+}
+
+message HelloReplies {
+    Integer returnCode = 1;
+    string message = 2;
+    repeated DataInfo dataInfo = 3;
+}

@@ -1,0 +1,42 @@
+syntax = "proto3";
+import "type.proto";
+
+option java_package = "cn.vpclub.graduation.project.api";
+option java_outer_classname = "JurisdictionProto";
+
+message JurisdictionDTO{
+    //权限角色id,主键
+    Long jurisdictionid=1;
+    //创建时间
+    Long jurisdictioncreatedTime=2;
+    //创建人
+    string jurisdictioncreatedBy=3;
+    //更新时间
+    Long jurisdictionupdatedTime=4;
+    //更新人
+    string jurisdictionupdatedBy=5;
+    //删除标识（1：未删除，2：已删除）
+    Long jurisdictiondeleted=6;
+    //权限角色名称
+    string jurisdictionname=7;
+}
+
+message JurisdictionResponse{
+    Integer returnCode=1;
+    string message=2;
+    repeated JurisdictionDTO dataInfo=3;
+}
+
+service JurisdictionService{
+    //添加权限角色
+    rpc add(JurisdictionDTO) returns(JurisdictionResponse){}
+    //删除权限角色
+    rpc delete(JurisdictionDTO) returns(JurisdictionResponse){}
+    //修改权限角色
+    rpc update(JurisdictionDTO) returns(JurisdictionResponse){}
+    //查询单个权限角色名称
+    rpc query(JurisdictionDTO) returns(JurisdictionResponse){}
+    //查询所有权限角色
+    rpc selectAll(JurisdictionDTO) returns(JurisdictionResponse){}
+
+}

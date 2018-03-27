@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.graduation.project.mapper.CurriculumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="CurriculumResultMap" type="cn.vpclub.graduation.project.entity.Curriculum">
+        <result column="curriculumid" property="curriculumid" />
+        <result column="curriculumcreated_time" property="curriculumcreatedTime" />
+        <result column="curriculumcreated_by" property="curriculumcreatedBy" />
+        <result column="curriculumupdated_time" property="curriculumupdatedTime" />
+        <result column="curriculumupdated_by" property="curriculumupdatedBy" />
+        <result column="curriculumdeleted" property="curriculumdeleted" />
+        <result column="curriculumname" property="curriculumname" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="cn.vpclub.graduation.project.entity.Curriculum">
+        insert into curriculum
+        (curriculumid,
+        curriculumcreated_time,curriculumcreated_by,
+        curriculumupdated_time,curriculumupdated_by,
+        curriculumdeleted,curriculumname)
+        value (#{curriculumid},#{curriculumcreatedTime},
+        #{curriculumcreatedBy},#{curriculumupdatedTime},
+        #{curriculumupdatedBy},#{curriculumdeleted},#{curriculumname})
+    </insert>
+
+
+    <delete id="delete" parameterType="cn.vpclub.graduation.project.entity.Curriculum">
+        delete from curriculum where curriculumid=#{curriculumid}
+    </delete>
+
+    <update id="update" parameterType="cn.vpclub.graduation.project.entity.Curriculum">
+        update curriculum set curriculumcreated_time=#{curriculumcreatedTime},
+        curriculumcreated_by=#{curriculumcreatedBy},
+        curriculumupdated_time=#{curriculumupdatedTime},
+        curriculumupdated_by=#{curriculumupdatedBy},
+        curriculumdeleted=#{curriculumdeleted},
+        curriculumname=#{curriculumname}
+        where curriculumid=#{curriculumid}
+    </update>
+
+    <select id="query" parameterType="cn.vpclub.graduation.project.entity.Curriculum" resultMap="CurriculumResultMap">
+        SELECT
+        * FROM curriculum WHERE curriculumid=#{curriculumid}
+    </select>
+
+    <select id="selectAll" parameterType="cn.vpclub.graduation.project.entity.Curriculum" resultMap="CurriculumResultMap">
+        SELECT
+        * FROM curriculum
+    </select>
+
+</mapper>

@@ -1,0 +1,42 @@
+syntax = "proto3";
+import "type.proto";
+
+option java_package = "cn.vpclub.graduation.project.api";
+option java_outer_classname = "SpecidtyProto";
+
+message SpecidtyDTO{
+    //专业id,主键
+    Long specidtyid=1;
+    //创建时间
+    Long specidtycreatedTime=2;
+    //创建人
+    string specidtycreatedBy=3;
+    //更新时间
+    Long specidtyupdatedTime=4;
+    //更新人
+    string specidtyupdatedBy=5;
+    //删除标识（1：未删除，2：已删除）
+    Long specidtydeleted=6;
+    //专业名称
+    string specidtyname=7;
+}
+
+message SpecidtyResponse{
+    Integer returnCode=1;
+    string message=2;
+    repeated SpecidtyDTO dataInfo=3;
+}
+
+service SpecidtyService{
+    //添加专业
+    rpc add(SpecidtyDTO) returns(SpecidtyResponse){}
+    //删除专业
+    rpc delete(SpecidtyDTO) returns(SpecidtyResponse){}
+    //修改专业
+    rpc update(SpecidtyDTO) returns(SpecidtyResponse){}
+    //查询单个专业
+    rpc query(SpecidtyDTO) returns(SpecidtyResponse){}
+    //查询所有专业
+    rpc selectAll(SpecidtyDTO) returns(SpecidtyResponse){}
+
+}

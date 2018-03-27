@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.vpclub.graduation.project.mapper.TeacherUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="TeacherUserResultMap" type="cn.vpclub.graduation.project.entity.TeacherUser">
+        <result column="teacheruserid" property="teacheruserid" />
+        <result column="teacherusercreated_time" property="teacherusercreatedTime" />
+        <result column="teacherusercreated_by" property="teacherusercreatedBy" />
+        <result column="teacheruserupdated_time" property="teacheruserupdatedTime" />
+        <result column="teacheruserupdated_by" property="teacheruserupdatedBy" />
+        <result column="teacheruserdeleted" property="teacheruserdeleted" />
+        <result column="teacherusername" property="teacherusername" />
+        <result column="teacheruserpwd" property="teacheruserpwd" />
+        <result column="teacherusersex" property="teacherusersex" />
+        <result column="teacheruserage" property="teacheruserage" />
+        <result column="teacheruserphone" property="teacheruserphone" />
+        <result column="teacheruseradress" property="teacheruseradress" />
+        <result column="teacherusercurriculumid" property="teacherusercurriculumid" />
+        <result column="teacheruserspecidtyid" property="teacheruserspecidtyid" />
+        <result column="teacheruseracademyid" property="teacheruseracademyid" />
+        <result column="teacherusergrade" property="teacherusergrade" />
+        <result column="jurisdictionid" property="jurisdictionid" />
+        <result column="teamid" property="teamid" />
+    </resultMap>
+
+
+    <insert id="add" parameterType="cn.vpclub.graduation.project.entity.TeacherUser">
+        insert into teacheruser
+        (teacheruserid,teacherusercreated_time,teacherusercreated_by,
+        teacheruserupdated_time,teacheruserupdated_by,
+        teacheruserdeleted,teacherusername,teacheruserpwd,teacherusersex,
+        teacheruserage,teacheruserphone,teacheruseradress,
+        teacherusercurriculumid,teacheruserspecidtyid,teacheruseracademyid,
+        teacherusergrade,jurisdictionid,teamid)
+        value (#{teacheruserid},#{teacherusercreatedTime},
+        #{teacherusercreatedBy},#{teacheruserupdatedTime},
+        #{teacheruserupdatedBy},#{teacheruserdeleted},#{teacherusername},
+        #{teacheruserpwd},#{teacherusersex},
+        #{teacheruserage},#{teacheruserphone},#{teacheruseradress},
+        #{teacherusercurriculumid},#{teacheruserspecidtyid},#{teacheruseracademyid},
+        #{teacherusergrade},#{jurisdictionid},#{teamid})
+    </insert>
+
+
+    <delete id="delete" parameterType="cn.vpclub.graduation.project.entity.TeacherUser">
+        delete from teacheruser where teacheruserid=#{teacheruserid}
+    </delete>
+
+    <update id="update" parameterType="cn.vpclub.graduation.project.entity.TeacherUser">
+        update teacheruser set
+        teacheruserupdated_time=#{teacheruserupdatedTime},
+        teacheruserupdated_by=#{teacheruserupdatedBy},
+        teacherusername=#{teacherusername},
+        teacheruserpwd=#{teacheruserpwd},
+        teacherusersex=#{teacherusersex},
+        teacheruserage=#{teacheruserage},
+        teacheruserphone=#{teacheruserphone},
+        teacheruseradress=#{teacheruseradress},
+        teacherusercurriculumid=#{teacherusercurriculumid},
+        teacheruserspecidtyid=#{teacheruserspecidtyid},
+        teacheruseracademyid=#{teacheruseracademyid},
+        teacherusergrade=#{teacherusergrade},
+        jurisdictionid=#{jurisdictionid},
+        teamid=#{teamid}
+        where teacheruserid=#{teacheruserid}
+    </update>
+
+    <select id="query" parameterType="cn.vpclub.graduation.project.entity.TeacherUser" resultMap="TeacherUserResultMap">
+        SELECT
+        * FROM teacheruser WHERE teacheruserid=#{teacheruserid}
+    </select>
+
+    <select id="selectAll" parameterType="cn.vpclub.graduation.project.entity.TeacherUser" resultMap="TeacherUserResultMap">
+        SELECT
+        * FROM teacheruser
+    </select>
+
+    <!--登录验证-->
+    <select id="login" parameterType="cn.vpclub.graduation.project.entity.TeacherUser" resultMap="TeacherUserResultMap">
+        select teacheruserid,teacheruserpwd,jurisdictionid from teacheruser where teacherusername=#{teacherusername}
+    </select>
+
+    <!--根据姓名查询id-->
+    <select id="queryId" parameterType="cn.vpclub.graduation.project.entity.TeacherUser" resultMap="TeacherUserResultMap">
+        select teacheruserid from teacheruser where teacherusername=#{teacherusername}
+    </select>
+
+    <!--根据团队id查询用户-->
+    <select id="selectByTeamId" parameterType="cn.vpclub.graduation.project.entity.TeacherUser" resultMap="TeacherUserResultMap">
+        select * from teacheruser where teamid=#{teamid}
+    </select>
+</mapper>
